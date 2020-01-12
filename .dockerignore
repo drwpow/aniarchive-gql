@@ -1,0 +1,9 @@
+.env
+.eslintignore
+.eslintrc
+.git
+.github
+.gitignore
+.prettierrc
+dist
+node_modules
