@@ -66,6 +66,7 @@ const Person = objectType({
   name: 'Person',
   definition(t) {
     t.model.id();
+    t.model.alias();
     t.model.animated(filmOptions);
     t.model.birthDay();
     t.model.birthMonth();
@@ -120,7 +121,11 @@ const Query = objectType({
   name: 'Query',
   definition(t) {
     t.crud.film();
-    t.crud.films(filmOptions);
+    t.crud.films({
+      filtering: { releaseYear: true },
+      ordering: { releaseYear: true, title: true, titleJP: true, titleEN: true },
+      pagination: true,
+    });
     t.crud.people(personOptions);
     t.crud.person();
     t.crud.studio();
@@ -131,10 +136,18 @@ const Query = objectType({
 const Mutation = objectType({
   name: 'Mutation',
   definition(t) {
-    t.crud.upsertOneFilm();
-    t.crud.upsertOneRelease();
-    t.crud.upsertOnePerson();
-    t.crud.upsertOneStudio();
+    t.crud.createOneFilm();
+    t.crud.createOnePerson();
+    t.crud.createOneRelease();
+    t.crud.createOneStudio();
+    t.crud.deleteOneFilm();
+    t.crud.deleteOnePerson();
+    t.crud.deleteOneRelease();
+    t.crud.deleteOneStudio();
+    t.crud.updateOneFilm();
+    t.crud.updateOnePerson();
+    t.crud.updateOneRelease();
+    t.crud.updateOneStudio();
   },
 });
 

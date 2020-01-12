@@ -1,0 +1,5 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'drewpow/aniarchive-gql', '.']
+    env:
+      - 'POSTGRESQL_URL=_POSTGRESQL_URL'

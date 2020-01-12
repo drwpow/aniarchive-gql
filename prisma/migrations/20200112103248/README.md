@@ -27,7 +27,7 @@ migration 20200111220050-ghibli..20200112103248
  datasource db {
    provider = "postgresql"
 -  url = "***"
-+  url      = env("POSTGRES_URL")
++  url      = env("POSTGRESQL_URL")
  }
  enum Country {
    AU
