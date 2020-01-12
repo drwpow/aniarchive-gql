@@ -1,8 +1,8 @@
-import { Photon } from '@prisma/photon';
+import { PrismaClient } from '@prisma/client';
 import { config } from 'dotenv';
 
 config();
-const photon = new Photon();
+const prisma = new PrismaClient();
 
 const JP = 'JP' as 'JP';
 
@@ -11,7 +11,7 @@ async function main() {
 
   const imgArrietty = {
     name: 'The Secret World of Arrietty Theatrical Release Poster',
-    url: 'https://storage.googleapis.com/aniarchive-films/the-secret-world-of-arriety.jpg',
+    url: 'https://storage.googleapis.com/aniarchive-films/the-secret-world-of-arrietty.jpg',
   };
   const imgCastleInTheSky = {
     name: 'Castle in the Sky Japanese Theatrical Release Poster',
@@ -120,7 +120,7 @@ async function main() {
       imgWindRises,
       imgYamadas,
     ].map(img =>
-      photon.images.upsert({
+      prisma.image.upsert({
         where: { url: img.url },
         create: img,
         update: img,
@@ -149,7 +149,7 @@ async function main() {
 
   await Promise.all(
     [topcraft, studioGhibli].map(studio =>
-      photon.studios.upsert({
+      prisma.studio.upsert({
         where: { id: studio.id },
         create: studio,
         update: studio,
@@ -290,7 +290,7 @@ async function main() {
   };
 
   const arrietty = {
-    id: 'the-secret-world-of-arriety',
+    id: 'the-secret-world-of-arrietty',
     image: { connect: { url: imgArrietty.url } },
     releaseYear: 2010,
     studio: { connect: { id: studioGhibli.id } },
@@ -338,7 +338,7 @@ async function main() {
       theWindRises,
       princessKaguya,
     ].map(film =>
-      photon.films.upsert({
+      prisma.film.upsert({
         where: { id: film.id },
         create: film,
         update: film,
@@ -365,7 +365,6 @@ async function main() {
         { id: spiritedAway.id },
         { id: howlsMovingCastle.id },
         { id: ponyo.id },
-        { id: arrietty.id },
         { id: theWindRises.id },
       ],
     },
@@ -429,7 +428,7 @@ async function main() {
 
   await Promise.all(
     [miyazakiHayao, takahataIsao, joeHisaishi].map(person =>
-      photon.people.upsert({
+      prisma.person.upsert({
         where: { id: person.id },
         create: person,
         update: person,
@@ -441,5 +440,5 @@ async function main() {
 main()
   .catch(e => console.error(e))
   .finally(async () => {
-    await photon.disconnect();
+    await prisma.disconnect();
   });

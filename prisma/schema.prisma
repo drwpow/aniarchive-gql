@@ -1,10 +1,10 @@
-generator photon {
-  provider = "photonjs"
+generator prisma {
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("POSTGRES_URL")
+  url      = env("POSTGRESQL_URL")
 }
 
 enum Country {
@@ -34,9 +34,9 @@ model Film {
   ///comment The directors of the film
   directors      Person[]        @relation(name: "FilmDirectors")
   ///comment Animation frame sequences for the film
-  frameSequences FrameSequence[]
+  frameSequences FrameSequence[] @relation(name: "FilmFrameSequence")
   ///comment Main image for the film
-  image          Image
+  image          Image           @relation(name: "FilmImage")
   ///comment Releases of the film
   releases       Release[]
   ///comment Initial release year of the film
@@ -49,25 +49,19 @@ model Film {
   titleJP        String          @unique
   ///comment English title
   titleEN        String          @unique
+  ///comment URL to watch the trailer
+  trailer        String?
 }
 
 model FrameSequence {
-  id      String   @default(cuid()) @id
-  artists Person[] @relation(name: "FrameSequenceArtists")
-  film    Film
-  frames  Frame[]
-  notes   String
-  order   Int
-  video   String
-}
-
-model Frame {
-  id       String  @default(cuid()) @id
-  artist   Person
-  image    Image
-  keyframe Boolean
-  notes    String
-  order    Int
+  id             String   @default(cuid()) @id
+  artists        Person[] @relation(name: "FrameSequenceArtists")
+  film           Film     @relation(name: "FilmFrameSequence")
+  image          Image    @relation(name: "FrameSequenceImage")
+  notes          String
+  timestampStart Int?
+  timestampEnd   Int?
+  video          String
 }
 
 model Image {
@@ -108,7 +102,7 @@ model Person {
   firstName   String
   founded     Studio[] @relation(name: "StudioFounders")
   ///comment Image of this person
-  image       Image?
+  image       Image?   @relation(name: "PersonImage")
   ///comment This person’s name in Kanji (Japanese only)
   kanji       String?
   ///comment Last name of this person
@@ -122,7 +116,7 @@ model Release {
   country      Country
   film         Film
   format       String
-  images       Image[]
+  images       Image[] @relation(name: "ReleaseImages")
   notes        String?
   region       String
   releaseDay   Int?
@@ -138,6 +132,6 @@ model Studio {
   films       Film[]
   foundedYear Int
   founders    Person[] @relation(name: "StudioFounders")
-  image       Image?
+  image       Image?   @relation(name: "StudioImage")
   name        String   @unique
 }
