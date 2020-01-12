@@ -1,5 +1,5 @@
-generator photon {
-  provider = "photonjs"
+generator prisma {
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -34,13 +34,9 @@ model Film {
   ///comment The directors of the film
   directors      Person[]        @relation(name: "FilmDirectors")
   ///comment Animation frame sequences for the film
-  frameSequences FrameSequence[]
+  frameSequences FrameSequence[] @relation(name: "FilmFrameSequence")
   ///comment Main image for the film
-  image          Image
-  ///comment Voice acting languages for the film
-  languageDub    String[]
-  ///comment Subtitle languages for the film
-  languageSub    String[]
+  image          Image           @relation(name: "FilmImage")
   ///comment Releases of the film
   releases       Release[]
   ///comment Initial release year of the film
@@ -53,31 +49,26 @@ model Film {
   titleJP        String          @unique
   ///comment English title
   titleEN        String          @unique
+  ///comment URL to watch the trailer
+  trailer        String?
 }
 
 model FrameSequence {
-  id      String   @default(cuid()) @id
-  artists Person[] @relation(name: "FrameSequenceArtists")
-  film    Film
-  frames  Frame[]
-  notes   String
-  order   Int
-  video   String
-}
-
-model Frame {
-  id       String  @default(cuid()) @id
-  artist   Person
-  image    Image
-  keyframe Boolean
-  notes    String
-  order    Int
+  id             String   @default(cuid()) @id
+  artists        Person[] @relation(name: "FrameSequenceArtists")
+  film           Film     @relation(name: "FilmFrameSequence")
+  image          Image    @relation(name: "FrameSequenceImage")
+  notes          String
+  timestampStart Int?
+  timestampEnd   Int?
+  video          String
 }
 
 model Image {
-  id   String @default(cuid()) @id
-  name String
-  url  String
+  id        String  @default(cuid()) @id
+  copyright String?
+  name      String
+  url       String  @unique
 }
 
 model Person {
@@ -93,6 +84,8 @@ model Person {
   birthDay    Int?
   ///comment Birthdays are split into day/month/year separately because we may not know all parts!
   birthYear   Int?
+  ///comment Country this person is associated with
+  country     Country
   ///comment Films this person composed the music for
   composed    Film[]   @relation(name: "FilmComposers")
   ///comment Films this person directed
@@ -107,13 +100,13 @@ model Person {
   description String?
   ///comment First name of this person
   firstName   String
-  ///comment This person’s name in Kanji (Japanese only)
   founded     Studio[] @relation(name: "StudioFounders")
+  ///comment Image of this person
+  image       Image?   @relation(name: "PersonImage")
+  ///comment This person’s name in Kanji (Japanese only)
   kanji       String?
   ///comment Last name of this person
   lastName    String
-  ///comment Location of this person
-  location    String?
   ///comment Website of this person
   website     String?
 }
@@ -123,7 +116,7 @@ model Release {
   country      Country
   film         Film
   format       String
-  images       Image[]
+  images       Image[] @relation(name: "ReleaseImages")
   notes        String?
   region       String
   releaseDay   Int?
@@ -139,5 +132,6 @@ model Studio {
   films       Film[]
   foundedYear Int
   founders    Person[] @relation(name: "StudioFounders")
+  image       Image?   @relation(name: "StudioImage")
   name        String   @unique
 }

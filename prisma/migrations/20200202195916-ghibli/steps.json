@@ -41,7 +41,7 @@
         "source": "db"
       },
       "argument": "url",
-      "value": "env(\"POSTGRES_URL\")"
+      "value": "env(\"POSTGRESQL_URL\")"
     },
     {
       "tag": "CreateModel",
@@ -169,6 +169,31 @@
       "arity": "List"
     },
     {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Film",
+          "field": "frameSequences"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Film",
+          "field": "frameSequences"
+        },
+        "directive": "relation"
+      },
+      "argument": "name",
+      "value": "\"FilmFrameSequence\""
+    },
+    {
       "tag": "CreateField",
       "model": "Film",
       "field": "image",
@@ -176,18 +201,29 @@
       "arity": "Required"
     },
     {
-      "tag": "CreateField",
-      "model": "Film",
-      "field": "languageDub",
-      "type": "String",
-      "arity": "List"
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Film",
+          "field": "image"
+        },
+        "directive": "relation"
+      }
     },
     {
-      "tag": "CreateField",
-      "model": "Film",
-      "field": "languageSub",
-      "type": "String",
-      "arity": "List"
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Film",
+          "field": "image"
+        },
+        "directive": "relation"
+      },
+      "argument": "name",
+      "value": "\"FilmImage\""
     },
     {
       "tag": "CreateField",
@@ -263,6 +299,13 @@
         },
         "directive": "unique"
       }
+    },
+    {
+      "tag": "CreateField",
+      "model": "Film",
+      "field": "trailer",
+      "type": "String",
+      "arity": "Optional"
     },
     {
       "tag": "CreateModel",
@@ -351,53 +394,14 @@
       "arity": "Required"
     },
     {
-      "tag": "CreateField",
-      "model": "FrameSequence",
-      "field": "frames",
-      "type": "Frame",
-      "arity": "List"
-    },
-    {
-      "tag": "CreateField",
-      "model": "FrameSequence",
-      "field": "notes",
-      "type": "String",
-      "arity": "Required"
-    },
-    {
-      "tag": "CreateField",
-      "model": "FrameSequence",
-      "field": "order",
-      "type": "Int",
-      "arity": "Required"
-    },
-    {
-      "tag": "CreateField",
-      "model": "FrameSequence",
-      "field": "video",
-      "type": "String",
-      "arity": "Required"
-    },
-    {
-      "tag": "CreateModel",
-      "model": "Frame"
-    },
-    {
-      "tag": "CreateField",
-      "model": "Frame",
-      "field": "id",
-      "type": "String",
-      "arity": "Required"
-    },
-    {
       "tag": "CreateDirective",
       "location": {
         "path": {
           "tag": "Field",
-          "model": "Frame",
-          "field": "id"
+          "model": "FrameSequence",
+          "field": "film"
         },
-        "directive": "default"
+        "directive": "relation"
       }
     },
     {
@@ -406,58 +410,72 @@
         "tag": "Directive",
         "path": {
           "tag": "Field",
-          "model": "Frame",
-          "field": "id"
+          "model": "FrameSequence",
+          "field": "film"
         },
-        "directive": "default"
+        "directive": "relation"
       },
-      "argument": "",
-      "value": "cuid()"
+      "argument": "name",
+      "value": "\"FilmFrameSequence\""
+    },
+    {
+      "tag": "CreateField",
+      "model": "FrameSequence",
+      "field": "image",
+      "type": "Image",
+      "arity": "Required"
     },
     {
       "tag": "CreateDirective",
       "location": {
         "path": {
           "tag": "Field",
-          "model": "Frame",
-          "field": "id"
+          "model": "FrameSequence",
+          "field": "image"
         },
-        "directive": "id"
+        "directive": "relation"
       }
     },
     {
-      "tag": "CreateField",
-      "model": "Frame",
-      "field": "artist",
-      "type": "Person",
-      "arity": "Required"
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "FrameSequence",
+          "field": "image"
+        },
+        "directive": "relation"
+      },
+      "argument": "name",
+      "value": "\"FrameSequenceImage\""
     },
     {
       "tag": "CreateField",
-      "model": "Frame",
-      "field": "image",
-      "type": "Image",
-      "arity": "Required"
-    },
-    {
-      "tag": "CreateField",
-      "model": "Frame",
-      "field": "keyframe",
-      "type": "Boolean",
-      "arity": "Required"
-    },
-    {
-      "tag": "CreateField",
-      "model": "Frame",
+      "model": "FrameSequence",
       "field": "notes",
       "type": "String",
       "arity": "Required"
     },
     {
       "tag": "CreateField",
-      "model": "Frame",
-      "field": "order",
+      "model": "FrameSequence",
+      "field": "timestampStart",
       "type": "Int",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "FrameSequence",
+      "field": "timestampEnd",
+      "type": "Int",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "FrameSequence",
+      "field": "video",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -510,6 +528,13 @@
     {
       "tag": "CreateField",
       "model": "Image",
+      "field": "copyright",
+      "type": "String",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Image",
       "field": "name",
       "type": "String",
       "arity": "Required"
@@ -520,6 +545,17 @@
       "field": "url",
       "type": "String",
       "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Image",
+          "field": "url"
+        },
+        "directive": "unique"
+      }
     },
     {
       "tag": "CreateModel",
@@ -602,6 +638,13 @@
       "field": "birthYear",
       "type": "Int",
       "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Person",
+      "field": "country",
+      "type": "Country",
+      "arity": "Required"
     },
     {
       "tag": "CreateField",
@@ -737,6 +780,38 @@
     {
       "tag": "CreateField",
       "model": "Person",
+      "field": "image",
+      "type": "Image",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Person",
+          "field": "image"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Person",
+          "field": "image"
+        },
+        "directive": "relation"
+      },
+      "argument": "name",
+      "value": "\"PersonImage\""
+    },
+    {
+      "tag": "CreateField",
+      "model": "Person",
       "field": "kanji",
       "type": "String",
       "arity": "Optional"
@@ -747,13 +822,6 @@
       "field": "lastName",
       "type": "String",
       "arity": "Required"
-    },
-    {
-      "tag": "CreateField",
-      "model": "Person",
-      "field": "location",
-      "type": "String",
-      "arity": "Optional"
     },
     {
       "tag": "CreateField",
@@ -836,6 +904,31 @@
       "field": "images",
       "type": "Image",
       "arity": "List"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Release",
+          "field": "images"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Release",
+          "field": "images"
+        },
+        "directive": "relation"
+      },
+      "argument": "name",
+      "value": "\"ReleaseImages\""
     },
     {
       "tag": "CreateField",
@@ -960,6 +1053,38 @@
       },
       "argument": "name",
       "value": "\"StudioFounders\""
+    },
+    {
+      "tag": "CreateField",
+      "model": "Studio",
+      "field": "image",
+      "type": "Image",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Studio",
+          "field": "image"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Studio",
+          "field": "image"
+        },
+        "directive": "relation"
+      },
+      "argument": "name",
+      "value": "\"StudioImage\""
     },
     {
       "tag": "CreateField",
