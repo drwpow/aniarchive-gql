@@ -4,7 +4,7 @@ generator photon {
 
 datasource db {
   provider = "postgresql"
-  url      = env("POSTGRESQL_URL")
+  url = "***"
 }
 
 enum Country {
@@ -34,7 +34,7 @@ model Film {
   ///comment The directors of the film
   directors      Person[]        @relation(name: "FilmDirectors", onDelete: CASCADE)
   ///comment Animation frame sequences for the film
-  frameSequences FrameSequence[] @relation(name: "FilmFrameSequence", onDelete: CASCADE)
+  frameSequences FrameSequence[]
   ///comment Main image for the film
   image          Image           @relation(name: "FilmImage", onDelete: CASCADE)
   ///comment Releases of the film
@@ -49,19 +49,16 @@ model Film {
   titleJP        String          @unique
   ///comment English title
   titleEN        String          @unique
-  ///comment URL to watch the trailer
-  trailer        String?
 }
 
 model FrameSequence {
-  id             String   @default(cuid()) @id
-  artists        Person[] @relation(name: "FrameSequenceArtists", onDelete: CASCADE)
-  film           Film     @relation(name: "FilmFrameSequence", onDelete: CASCADE)
-  image          Image    @relation(name: "FrameSequenceImage", onDelete: CASCADE)
-  notes          String
-  timestampStart Int?
-  timestampEnd   Int?
-  video          String
+  id      String   @default(cuid()) @id
+  artists Person[] @relation(name: "FrameSequenceArtists", onDelete: CASCADE)
+  film    Film
+  image   Image    @relation(name: "FrameSequenceImage", onDelete: CASCADE)
+  notes   String
+  order   Int
+  video   String
 }
 
 model Image {
