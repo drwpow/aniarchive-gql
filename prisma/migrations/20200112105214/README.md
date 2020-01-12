@@ -22,7 +22,7 @@ migration 20200112103248..20200112105214
  datasource db {
    provider = "postgresql"
 -  url = "***"
-+  url      = env("POSTGRES_URL")
++  url      = env("POSTGRESQL_URL")
  }
  enum Country {
    AU

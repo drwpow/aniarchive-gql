@@ -66,6 +66,7 @@ const Person = objectType({
   name: 'Person',
   definition(t) {
     t.model.id();
+    t.model.alias();
     t.model.animated(filmOptions);
     t.model.birthDay();
     t.model.birthMonth();

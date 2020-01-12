@@ -141,7 +141,7 @@ migration ..20200111220050-ghibli
 +
 +datasource db {
 +  provider = "postgresql"
-+  url      = env("POSTGRES_URL")
++  url      = env("POSTGRESQL_URL")
 +}
 +
 +enum Country {
