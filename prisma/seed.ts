@@ -11,7 +11,7 @@ async function main() {
 
   const imgArrietty = {
     name: 'The Secret World of Arrietty Theatrical Release Poster',
-    url: 'https://storage.googleapis.com/aniarchive-films/the-secret-world-of-arriety.jpg',
+    url: 'https://storage.googleapis.com/aniarchive-films/the-secret-world-of-arrietty.jpg',
   };
   const imgCastleInTheSky = {
     name: 'Castle in the Sky Japanese Theatrical Release Poster',
@@ -290,7 +290,7 @@ async function main() {
   };
 
   const arrietty = {
-    id: 'the-secret-world-of-arriety',
+    id: 'the-secret-world-of-arrietty',
     image: { connect: { url: imgArrietty.url } },
     releaseYear: 2010,
     studio: { connect: { id: studioGhibli.id } },
@@ -365,7 +365,6 @@ async function main() {
         { id: spiritedAway.id },
         { id: howlsMovingCastle.id },
         { id: ponyo.id },
-        { id: arrietty.id },
         { id: theWindRises.id },
       ],
     },
