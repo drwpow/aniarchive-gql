@@ -1,0 +1,143 @@
+generator photon {
+  provider = "photonjs"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = "***"
+}
+
+enum Country {
+  AU
+  BR
+  CA
+  CN
+  ES
+  FR
+  GB
+  IT
+  JP
+  MX
+  NZ
+  TR
+  UA
+  US
+}
+
+model Film {
+  ///comment A unique ID for this film
+  id             String          @id
+  ///comment Animators for this film
+  animators      Person[]        @relation(name: "FilmAnimators")
+  ///comment The composers of the film
+  composers      Person[]        @relation(name: "FilmComposers")
+  ///comment The directors of the film
+  directors      Person[]        @relation(name: "FilmDirectors")
+  ///comment Animation frame sequences for the film
+  frameSequences FrameSequence[]
+  ///comment Main image for the film
+  image          Image
+  ///comment Voice acting languages for the film
+  languageDub    String[]
+  ///comment Subtitle languages for the film
+  languageSub    String[]
+  ///comment Releases of the film
+  releases       Release[]
+  ///comment Initial release year of the film
+  releaseYear    Int
+  ///comment Studio that produced the film
+  studio         Studio?
+  ///comment Title of the film in the original language
+  title          String          @unique
+  ///comment Japanese title
+  titleJP        String          @unique
+  ///comment English title
+  titleEN        String          @unique
+}
+
+model FrameSequence {
+  id      String   @default(cuid()) @id
+  artists Person[] @relation(name: "FrameSequenceArtists")
+  film    Film
+  frames  Frame[]
+  notes   String
+  order   Int
+  video   String
+}
+
+model Frame {
+  id       String  @default(cuid()) @id
+  artist   Person
+  image    Image
+  keyframe Boolean
+  notes    String
+  order    Int
+}
+
+model Image {
+  id   String @default(cuid()) @id
+  name String
+  url  String
+}
+
+model Person {
+  ///comment A unique ID for this person
+  id          String   @id
+  ///comment Alias, usually if a person is better known by this
+  alias       String?
+  ///comment Films this person animated
+  animated    Film[]   @relation(name: "FilmArtists")
+  ///comment Birthdays are split into day/month/year separately because we may not know all parts!
+  birthMonth  Int?
+  ///comment Birthdays are split into day/month/year separately because we may not know all parts!
+  birthDay    Int?
+  ///comment Birthdays are split into day/month/year separately because we may not know all parts!
+  birthYear   Int?
+  ///comment Films this person composed the music for
+  composed    Film[]   @relation(name: "FilmComposers")
+  ///comment Films this person directed
+  directed    Film[]   @relation(name: "FilmDirectors")
+  ///comment Death days are split into day/month/year separately because we may not know all parts!
+  deathDay    Int?
+  ///comment Death days are split into day/month/year separately because we may not know all parts!
+  deathMonth  Int?
+  ///comment Death days are split into day/month/year separately because we may not know all parts!
+  deathYear   Int?
+  ///comment A short bio for this person
+  description String?
+  ///comment First name of this person
+  firstName   String
+  ///comment This person’s name in Kanji (Japanese only)
+  founded     Studio[] @relation(name: "StudioFounders")
+  kanji       String?
+  ///comment Last name of this person
+  lastName    String
+  ///comment Location of this person
+  location    String?
+  ///comment Website of this person
+  website     String?
+}
+
+model Release {
+  id           String  @default(cuid()) @id
+  country      Country
+  film         Film
+  format       String
+  images       Image[]
+  notes        String?
+  region       String
+  releaseDay   Int?
+  releaseMonth Int?
+  releaseYear  Int
+  runtime      Int
+}
+
+model Studio {
+  id          String   @id
+  city        String?
+  country     Country
+  films       Film[]
+  foundedYear Int
+  founders    Person[] @relation(name: "StudioFounders")
+  name        String   @unique
+}
