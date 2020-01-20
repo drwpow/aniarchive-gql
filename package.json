@@ -34,7 +34,7 @@
     "typescript": "^3.7.5"
   },
   "devDependencies": {
-    "@prisma/sdk": "0.0.130",
+    "@prisma/sdk": "0.0.153",
     "@types/node": "^13.1.8",
     "@types/ws": "6.0.4",
     "@typescript-eslint/eslint-plugin": "^2.16.0",
