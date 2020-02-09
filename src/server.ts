@@ -1,7 +1,3 @@
-if (process.env.NODE_ENV === 'development') {
-  require('dotenv').config();
-}
-
 import { GraphQLServer } from 'graphql-yoga';
 import { schema } from './schema';
 import { createContext } from './context';

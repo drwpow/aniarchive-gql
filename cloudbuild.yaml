@@ -1,5 +1,5 @@
 steps:
-  # build  container
+  # build container
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/$PROJECT_ID/aniarchive-api:$COMMIT_SHA', '.']
     env:
@@ -20,7 +20,5 @@ steps:
       - 'us-central1'
       - '--platform'
       - 'managed'
-      - '--add-cloudsql-instances'
-      - 'aniarchive-pg-replica'
 images:
   - 'gcr.io/$PROJECT_ID/aniarchive-api:$COMMIT_SHA'
