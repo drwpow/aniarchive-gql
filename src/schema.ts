@@ -32,24 +32,39 @@ const Country = enumType({
   members: ['AU', 'BR', 'CA', 'CN', 'ES', 'FR', 'GB', 'IT', 'JP', 'MX', 'NZ', 'TR', 'UA', 'US'],
 });
 
+const AnimationSequence = objectType({
+  name: 'AnimationSequence',
+  definition(t) {
+    t.model.id();
+    t.model.film();
+    t.model.image();
+    t.model.artists(personOptions);
+    t.model.url();
+    t.model.timestampStart();
+    t.model.timestampEnd();
+    t.model.notes();
+  },
+});
+
 const Film = objectType({
   name: 'Film',
   definition(t) {
     t.model.id();
-    t.model.animators(personOptions);
+    t.model.title();
+    t.model.titleEN();
+    t.model.titleJP();
+    t.model.releaseYear();
+    t.model.image();
+    t.model.studio();
+    t.model.trailer();
+    t.model.animationSequences({ pagination: true });
     t.model.composers(personOptions);
     t.model.directors(personOptions);
-    t.model.image();
+    t.model.writers(personOptions);
     t.model.releases({
       ordering: { releaseYear: true },
       pagination: true,
     });
-    t.model.releaseYear();
-    t.model.studio();
-    t.model.trailer();
-    t.model.title();
-    t.model.titleEN();
-    t.model.titleJP();
   },
 });
 
@@ -58,7 +73,7 @@ const Image = objectType({
   definition(t) {
     t.model.id();
     t.model.copyright();
-    t.model.name();
+    t.model.title();
     t.model.url();
   },
 });
@@ -67,23 +82,25 @@ const Person = objectType({
   name: 'Person',
   definition(t) {
     t.model.id();
-    t.model.alias();
-    t.model.animated(filmOptions);
-    t.model.birthDay();
-    t.model.birthMonth();
-    t.model.birthYear();
-    t.model.composed(filmOptions);
-    t.model.country();
-    t.model.deathDay();
-    t.model.deathMonth();
-    t.model.deathYear();
-    t.model.description();
-    t.model.directed(filmOptions);
-    t.model.firstName();
-    t.model.founded(studioOptions);
-    t.model.image();
-    t.model.kanji();
     t.model.lastName();
+    t.model.firstName();
+    t.model.kanji();
+    t.model.alias();
+    t.model.image();
+    t.model.description();
+    t.model.country();
+    t.model.birthYear();
+    t.model.birthMonth();
+    t.model.birthDay();
+    t.model.deathYear();
+    t.model.deathMonth();
+    t.model.deathDay();
+    t.model.website();
+    t.model.directed(filmOptions);
+    t.model.composed(filmOptions);
+    t.model.wrote(filmOptions);
+    t.model.founded(studioOptions);
+    t.model.animationSequences({ pagination: true });
   },
 });
 
@@ -91,16 +108,14 @@ const Release = objectType({
   name: 'Release',
   definition(t) {
     t.model.id();
-    t.model.country();
     t.model.film();
-    t.model.format();
     t.model.images();
-    t.model.notes();
-    t.model.region();
-    t.model.releaseDay();
-    t.model.releaseMonth();
-    t.model.releaseMonth();
     t.model.releaseYear();
+    t.model.releaseMonth();
+    t.model.releaseDay();
+    t.model.country();
+    t.model.format();
+    t.model.notes();
     t.model.runtime();
   },
 });
@@ -109,12 +124,13 @@ const Studio = objectType({
   name: 'Studio',
   definition(t) {
     t.model.id();
+    t.model.name();
+    t.model.image();
+    t.model.foundedYear();
+    t.model.films(filmOptions);
     t.model.city();
     t.model.country();
-    t.model.foundedYear();
     t.model.founders(personOptions);
-    t.model.image();
-    t.model.name();
   },
 });
 
@@ -137,15 +153,21 @@ const Query = objectType({
 const Mutation = objectType({
   name: 'Mutation',
   definition(t) {
+    t.crud.createOneAnimationSequence();
     t.crud.createOneFilm();
+    t.crud.createOneImage();
     t.crud.createOnePerson();
     t.crud.createOneRelease();
     t.crud.createOneStudio();
+    t.crud.deleteOneAnimationSequence();
     t.crud.deleteOneFilm();
+    t.crud.deleteOneImage();
     t.crud.deleteOnePerson();
     t.crud.deleteOneRelease();
     t.crud.deleteOneStudio();
+    t.crud.updateOneAnimationSequence();
     t.crud.updateOneFilm();
+    t.crud.updateOneImage();
     t.crud.updateOnePerson();
     t.crud.updateOneRelease();
     t.crud.updateOneStudio();
@@ -153,7 +175,7 @@ const Mutation = objectType({
 });
 
 export const schema = makeSchema({
-  types: [Query, Mutation, Country, Film, Image, Person, Release, Studio],
+  types: [Query, Mutation, AnimationSequence, Country, Film, Image, Person, Release, Studio],
   plugins: [nexusPrismaPlugin()],
   outputs: {
     schema: __dirname + '/generated/schema.graphql',

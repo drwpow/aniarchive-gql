@@ -20,7 +20,5 @@ steps:
       - 'us-central1'
       - '--platform'
       - 'managed'
-      - '--add-cloudsql-instances'
-      - 'aniarchive-pg-replica'
 images:
   - 'gcr.io/$PROJECT_ID/aniarchive-api:$COMMIT_SHA'
