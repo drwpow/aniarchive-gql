@@ -33,7 +33,7 @@
     "graphql-yoga": "^1.18.3",
     "nexus": "^0.12.0-rc.11",
     "nexus-prisma": "^0.9.1",
-    "prisma2": "^2.0.0-preview021",
+    "prisma2": "^2.0.0-preview022",
     "ts-node": "^8.6.2",
     "typescript": "^3.7.5"
   },
