@@ -35,7 +35,7 @@
     "nexus-prisma": "^0.9.1",
     "prisma2": "^2.0.0-preview021",
     "ts-node": "^8.6.2",
-    "typescript": "^3.7.5"
+    "typescript": "^3.8.2"
   },
   "devDependencies": {
     "@types/node": "^13.7.1",
