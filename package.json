@@ -27,7 +27,7 @@
   "dependencies": {
     "@prisma/client": "^2.0.0-preview022",
     "@prisma/sdk": "0.0.216",
-    "@types/ws": "^7.2.1",
+    "@types/ws": "^7.2.2",
     "dotenv": "^8.2.0",
     "graphql": "^14.6.0",
     "graphql-yoga": "^1.18.3",
