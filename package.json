@@ -25,25 +25,25 @@
     "start": "node dist/server"
   },
   "dependencies": {
-    "@prisma/client": "^2.0.0-preview022",
-    "@prisma/sdk": "0.0.221",
-    "@types/ws": "^7.2.2",
-    "graphql": "^14.6.0",
+    "@prisma/cli": "^2.0.0-beta.1",
+    "@prisma/client": "^2.0.0-beta.1",
+    "@prisma/sdk": "0.0.234",
+    "@types/ws": "^7.2.3",
+    "graphql": "^15.0.0",
     "graphql-yoga": "^1.18.3",
-    "nexus": "^0.12.0-rc.13",
-    "nexus-prisma": "^0.10.0",
-    "prisma2": "^2.0.0-preview022",
-    "ts-node": "^8.6.2",
+    "nexus": "^0.12.0",
+    "nexus-prisma": "^0.12.0",
+    "ts-node": "^8.8.2",
     "typescript": "^3.8.3"
   },
   "devDependencies": {
-    "@types/node": "^13.7.7",
-    "@typescript-eslint/eslint-plugin": "^2.22.0",
-    "@typescript-eslint/parser": "^2.22.0",
+    "@types/node": "^13.11.0",
+    "@typescript-eslint/eslint-plugin": "^2.26.0",
+    "@typescript-eslint/parser": "^2.26.0",
     "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.0",
+    "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-prettier": "^3.1.2",
-    "prettier": "^1.19.1",
+    "prettier": "^2.0.2",
     "ts-node-dev": "^1.0.0-pre.44"
   }
 }
