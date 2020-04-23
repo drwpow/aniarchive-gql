@@ -1,5 +1,5 @@
+import { makeSchema, objectType, enumType } from '@nexus/schema';
 import { nexusPrismaPlugin } from 'nexus-prisma';
-import { makeSchema, objectType, enumType } from 'nexus';
 
 const filmOptions = {
   filtering: { releaseYear: true },
@@ -100,7 +100,7 @@ const Person = objectType({
     t.model.composed(filmOptions);
     t.model.wrote(filmOptions);
     t.model.founded(studioOptions);
-    t.model.animationSequences({ pagination: true });
+    t.model.animated({ pagination: true });
   },
 });
 
