@@ -1,10 +1,10 @@
 # https://github.com/prisma/prisma-examples/tree/prisma2/deployment-platforms/docker
 
 FROM node:13.13
-RUN openssl version -v
-RUN uname -a
-ENV NODE_ENV $NODE_ENV
-ENV POSTGRESQL_URL $POSTGRESQL_URL
+ARG env
+ARG pg
+ENV NODE_ENV=${env}
+ENV POSTGRESQL_URL=${pg}
 
 WORKDIR /app
 COPY . ./
