@@ -2,26 +2,6 @@
   "version": "0.3.14-fixed",
   "steps": [
     {
-      "tag": "CreateEnum",
-      "enum": "Country",
-      "values": [
-        "AU",
-        "BR",
-        "CA",
-        "CN",
-        "ES",
-        "FR",
-        "GB",
-        "IT",
-        "JP",
-        "MX",
-        "NZ",
-        "TR",
-        "UA",
-        "US"
-      ]
-    },
-    {
       "tag": "CreateSource",
       "source": "db"
     },
@@ -32,7 +12,7 @@
         "source": "db"
       },
       "argument": "provider",
-      "value": "\"postgres\""
+      "value": "\"sqlite\""
     },
     {
       "tag": "CreateArgument",
@@ -41,7 +21,7 @@
         "source": "db"
       },
       "argument": "url",
-      "value": "env(\"POSTGRESQL_URL\")"
+      "value": "env(\"DATABASE_URL\")"
     },
     {
       "tag": "CreateModel",
@@ -691,6 +671,94 @@
       "arity": "Optional"
     },
     {
+      "tag": "CreateField",
+      "model": "Image",
+      "field": "Film",
+      "type": "Film",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Image",
+      "field": "AnimationSequence",
+      "type": "AnimationSequence",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Image",
+      "field": "Person",
+      "type": "Person",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Image",
+      "field": "Release",
+      "type": "Release",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Image",
+          "field": "Release"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Image",
+          "field": "Release"
+        },
+        "directive": "relation"
+      },
+      "argument": "",
+      "value": "\"ReleaseImages\""
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Image",
+          "field": "Release"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[releaseId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Image",
+          "field": "Release"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Image",
+      "field": "Studio",
+      "type": "Studio",
+      "arity": "List"
+    },
+    {
       "tag": "CreateModel",
       "model": "Person"
     },
@@ -804,7 +872,7 @@
       "tag": "CreateField",
       "model": "Person",
       "field": "country",
-      "type": "Country",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -859,7 +927,7 @@
     {
       "tag": "CreateField",
       "model": "Person",
-      "field": "animationSequences",
+      "field": "animated",
       "type": "AnimationSequence",
       "arity": "List"
     },
@@ -869,7 +937,7 @@
         "path": {
           "tag": "Field",
           "model": "Person",
-          "field": "animationSequences"
+          "field": "animated"
         },
         "directive": "relation"
       }
@@ -881,7 +949,7 @@
         "path": {
           "tag": "Field",
           "model": "Person",
-          "field": "animationSequences"
+          "field": "animated"
         },
         "directive": "relation"
       },
@@ -1215,7 +1283,7 @@
       "tag": "CreateField",
       "model": "Release",
       "field": "country",
-      "type": "Country",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -1357,7 +1425,7 @@
       "tag": "CreateField",
       "model": "Studio",
       "field": "country",
-      "type": "Country",
+      "type": "String",
       "arity": "Required"
     },
     {

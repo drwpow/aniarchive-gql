@@ -1,20 +1,15 @@
 # https://github.com/prisma/prisma-examples/tree/prisma2/deployment-platforms/docker
 
-FROM node:13.13
-ARG env
-ARG pg
-ENV NODE_ENV=${env}
-ENV POSTGRESQL_URL=${pg}
+FROM node:14.2
+ENV NODE_ENV=production
 
 WORKDIR /app
 COPY . ./
 
 USER root
 
-RUN npm install && chown -R node /app
-
-RUN npm run build
+RUN npm install && npm run build
+RUN chown -R node /app
 
 USER node
-
-CMD npm start
+CMD ["npm", "start"]

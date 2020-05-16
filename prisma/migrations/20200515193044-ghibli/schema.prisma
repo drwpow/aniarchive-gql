@@ -1,27 +1,10 @@
 datasource db {
-  provider = "postgres"
+  provider = "sqlite"
   url = "***"
 }
 
 generator prisma_client {
   provider = "prisma-client-js"
-}
-
-enum Country {
-  AU
-  BR
-  CA
-  CN
-  ES
-  FR
-  GB
-  IT
-  JP
-  MX
-  NZ
-  TR
-  UA
-  US
 }
 
 model Film {
@@ -69,11 +52,16 @@ model AnimationSequence {
 }
 
 model Image {
-  id        String  @default(cuid()) @id
-  copyright String?
-  title     String
-  url       String  @unique
-  releaseId String?
+  id                String              @default(cuid()) @id
+  copyright         String?
+  title             String
+  url               String              @unique
+  releaseId         String?
+  Film              Film[]
+  AnimationSequence AnimationSequence[]
+  Person            Person[]
+  Release           Release?            @relation("ReleaseImages", fields: [releaseId], references: [id])
+  Studio            Studio[]
 }
 
 model Person {
@@ -93,7 +81,7 @@ model Person {
   // /comment A short bio for this person
   description String?
   // /comment Country this person is associated with
-  country     Country
+  country     String
   // /comment Birthdays are split into day/month/year separately because we may not know all parts!
   birthYear   Int?
   // /comment Birthdays are split into day/month/year separately because we may not know all parts!
@@ -128,7 +116,7 @@ model Release {
   releaseYear  Int
   releaseMonth Int?
   releaseDay   Int?
-  country      Country
+  country      String
   // /comment Format for the release (e.g. DVD / BluRay / Television)
   format       String
   notes        String?
@@ -143,6 +131,6 @@ model Studio {
   foundedYear Int
   films       Film[]
   city        String?
-  country     Country
+  country     String
   founders    Person[] @relation(references: [id])
 }
