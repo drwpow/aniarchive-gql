@@ -18,6 +18,7 @@ interface Film {
 
 // prettier-ignore
 const films:{[key:string]:Film} = {
+  'anastasia':{releaseYear:1997,studio:'fox-animation',title:'Anastasia',titleEN:'Anastasia',titleJP:'アナスタシア'},
   'castle-in-the-sky':{releaseYear:1986,studio:'studio-ghibli',title:'天空の城ラピュタ',titleEN:'Castle in the Sky',titleJP:'天空の城ラピュタ'},
   'crayon-shinchan-unkokusais-ambition':{releaseYear:1995,studio:'shin-ei',title:'クレヨンしんちゃん 雲黒斎の野望',titleJP:'クレヨンしんちゃん 雲黒斎の野望',titleEN:'Crayon Shin-chan: Unkokusai’s Ambition'},
   'from-up-on-poppy-hill':{releaseYear:2011,studio:'studio-ghibli',title:'コクリコ坂から',titleJP:'コクリコ坂から',titleEN:'From Up on Poppy Hill'},
@@ -42,6 +43,7 @@ const films:{[key:string]:Film} = {
   'the-cat-returns':{releaseYear:2002,studio:'studio-ghibli',title:'猫の恩返し',titleJP:'猫の恩返し',titleEN:'The Cat Returns'},
   'the-secret-world-of-arrietty':{releaseYear:2010,studio:'studio-ghibli',title:'借りぐらしのアリエッティ',titleJP:'借りぐらしのアリエッティ',titleEN:'The Secret World of Arrietty'},
   'the-tale-of-the-princess-kaguya':{releaseYear:2013,studio:'studio-ghibli',title:'かぐや姫の物語',titleJP:'かぐや姫の物語',titleEN:'The Tale of the Princess Kaguya'},
+  'titan-ae':{releaseYear:2000,studio:'fox-animation',title:'Titan A.E.',titleJP:'タイタンA.E.',titleEN:'Titan A.E.'},
   'the-wind-rises':{releaseYear:2013,studio:'studio-ghibli',title:'風立ちぬ',titleJP:'風立ちぬ',titleEN:'The Wind Rises'},
   'when-marnie-was-there':{releaseYear:2014,studio:'studio-ghibli',title:'思い出のマーニー',titleJP:'思い出のマーニー',titleEN:'When Marnie Was There'},
   'whisper-of-the-heart':{releaseYear:1995,studio:'studio-ghibli',title:'耳をすませば',titleJP:'耳をすませば',titleEN:'Whisper of the Heart'},
@@ -50,6 +52,7 @@ const films:{[key:string]:Film} = {
 // IDs are sakugabooru.com IDs
 // prettier-ignore
 const sakugaPosts = {
+  'anastasia':[30641,30642,30643,30644,30645,30651,30653,30660,30686,30687,30688,30689,30690,30691,30693,30694,30695,30696,30697],
   'castle-in-the-sky':[7861,7862,7863,7864,15530,18261,18262,18263,18265,18266,18268,18269,18270,18271,18272,18273,18275,18276,18277,18278,18279,18582,38794,38795,38796,38797,38798,38799,38800,38801,38802,38803,38804,38805,38806,38807,38808,38809,38810,38811,38812,38813,38814,38815,38816,38817,38818,38819,38820,38821,38822,38823,38824,38825,38826,38827,38828],
   'crayon-shinchan-unkokusais-ambition':[26024,26025,26026,26027,26028,119380,119381],
   'from-up-on-poppy-hill':[23766,23769,23771,23772,23775,23778,23779,23780,23782,24902,24903,24908,24909,110675,110676,110677,114864,114865,114866,114867,114868,114869,114870,114871,114872,114873,114876,114877,114878,114879,114880,114881,114883,114885,114886,114887,114889,114890,114891,114892,114900,114901,114902,114903,114904,114905,114906,114907,114908,114909,114910,114911,114912,114913,114914,114915,114917,114918,114919,114921,114922,114923,114924,114926,114928,114930,114932,114933,114935,114936,114937,114938,114939,114940,114941,114942,114943,114944,114945,114946,114947,114948,114950,114951,114952,114953,114961,114962,114963,114964,114965,114967,115039,115041,115042,115043,115044,115045,115046,115047,115048],
@@ -109,6 +112,7 @@ const people:{[key:string]:Person} = {
   'awada-tsutomu':{animated:[11975,16709,17674,18157,18626,25547,46186,46191,67916,68073,68074,68086,80252,80262,120479,120499,120515],lastName:'Awada',firstName:'Tsutomu',country:JP},
   'awao-masahiro':{animated:[27937],lastName:'Awao',firstName:'Masahiro',country:JP},
   'azuma-yuuko':{animated:[36449,74789],lastName:'Azuma',firstName:'Yuuko',country:JP},
+  'bluth-don':{directed:['anastasia','titan-ae'],founded:['fox-animation'],lastName:'Bluth',firstName:'Don',country:US,birthYear:1937,birthMonth:9,birthDay:13},
   'cleworth-eric':{animated:[39203],lastName:'Cleworth',firstName:'Eric',birthYear:1920,birthMonth:12,birthDay:10,deathYear:1999,deathMonth:12,deathDay:10,country:US},
   'ebata-ryouma':{animated:[36453],lastName:'Ebata',firstName:'Ryouma',country:JP},
   'eguchi-hisashi':{animated:[34100,119347,119355],lastName:'Eguchi',firstName:'Hisashi',country:JP},
@@ -123,6 +127,9 @@ const people:{[key:string]:Person} = {
   'furumata-taichi':{animated:[11896,11897,114881,114908,114953],lastName:'Furumata',firstName:'Taichi',country:JP},
   'furuya-shougo':{animated:[30363,36436,36446,36454,62262,66248,80234,114883,114928,118697,120397,120467,120497,120498],lastName:'Furuya',firstName:'Shougo',country:JP},
   'futaki-makiko':{animated:[6243,6874,7863,11962,14752,14777,16169,16238,16328,16776,18277,18610,22994,23771,25531,25534,25549,28109,28110,28114,28116,28406,28416,28418,30345,30363,36428,36465,38455,38463,38797,38798,38819,44916,44934,44945,44946,46179,46180,46181,62248,114879,114904,114951,118531,120454,120476],lastName:'Futaki',firstName:'Makiko',kanji:'二木 真希子',birthYear:1958,birthMonth:6,birthDay:19,deathYear:2016,deathMonth:5,deathDay:13,country:JP},
+  'goldman-gary':{directed:['anastasia','titan-ae'],founded:['fox-animation'],lastName:'Goldman',firstName:'Gary',country:US,birthYear:1944,birthMonth:11,birthDay:17},
+  'gordon-steven-e':{animated:[30686],lastName:'Gordon',firstName:'Steven E.',birthYear:1960,birthMonth:3,birthDay:23,country:US},
+  'goncalves-edison':{animated:[30653],lastName:'Goncalves',firstName:'Edison',country:US},
   'hachizaki-kenji':{animated:[61717],lastName:'Hachizaki',firstName:'Kenji',country:JP},
   'hamada-takayuki':{animated:[11675,11676,11677,11678,11681,11748,11817,28180,62276,120277,120378,120401,120404,120809,120811,120812,120814,120837,120838,120839],lastName:'Hamada',firstName:'Takayuki',country:JP},
   'hamasu-hideki':{animated:[8401,8402,11964,13106,14315,14397,14487,14497,23766,24902,27983,27992,30366,36439,36450,36466,61711,114864,114902,114964,114965,114967,119337,119354,119360,120484,120485,120501,120502],lastName:'Hamasu',firstName:'Hideki',country:JP},
@@ -192,6 +199,7 @@ const people:{[key:string]:Person} = {
   'matsumura-yuka':{animated:[120398],lastName:'Matsumura',firstName:'Yuka',country:JP},
   'matsuo-mariko':{animated:[13104,14770,18614,30334,30364,36428,36429,36447,36453,61583,61707,61712,68068,74794,114880,114901,114950,120438,120456,120457,120518],lastName:'Matsuo',firstName:'Mariko',country:JP},
   'matsuse-masaru':{animated:[13088,13098,46178,61570,68103,80243,120571],lastName:'Matsuse',firstName:'Masaru',country:JP},
+  'mechanic-bill':{founded:['fox-animation'],lastName:'Mechanic',firstName:'Bill',birthYear:1950,birthMonth:5,birthDay:12,country:US},
   'mihara-michio':{animated:[16777,27945,68091,74488,74547,118695,118733,119332,119346],lastName:'Mihara',firstName:'Michio',country:JP},
   'minowa-hiroko':{animated:[6021,28423,46187,68065,68081,68099,114942,120438,120522],lastName:'Minowa',firstName:'Hiroko',country:JP},
   'miura-tomoko':{animated:[24908,36428,36454,36455,114871,114914],lastName:'Miura',firstName:'Tomoko',country:JP},
@@ -303,6 +311,7 @@ const people:{[key:string]:Person} = {
 // prettier-ignore
 const studios = {
   'disney-animation':{city:'Burbank, CA',country:US,foundedYear:1923,name:'Walt Disney Animation Studios'},
+  'fox-animation':{city:'Phoenix, AZ',country:US,foundedYear:1994,name:'Fox Animation Studios',},
   'tms-entertainment':{country:JP,foundedYear:1964,name:'TMS Entertainment Co.,Ltd.'},
   topcraft:{country:JP,foundedYear:1971,name:'Topcraft'},
   madhouse:{country:JP,foundedYear:1972,name:'Madhouse'},
@@ -317,7 +326,7 @@ const images:{[key:string]:{[key:string]:{title:string; url:string}}} = {
   animationSequences:Object.entries(sakugaPosts).reduce((obj,[filmID,sakugaIDs]) => ({...obj,...sakugaIDs.reduce( (idObj,id) => ({...idObj,[id]:{title:`${films[filmID].titleEN}`,url:`https://storage.googleapis.com/aniarchive-assets/thumb/${id}.jpg`}}),{}),}),{}),
   films:Object.entries(films).reduce((obj,[id,film]) => ({...obj,[id]:{title:`${film.titleEN} Theatrical Release Poster`,url:`https://storage.googleapis.com/aniarchive-assets/film/${id}.jpg`}}),{}),
   people:Object.entries(people).filter(([id]) =>
-    ['ambro-hal','anno-hideaki','cleworth-eric','furukawa-hisaki','futaki-makiko','joe-hisaishi','johnston-ollie','kahl-milt','king-hal','kon-satoshi','kondo-katsuya','larson-eric','lounsbery-john','macmanus-dan','miyazaki-goro','miyazaki-hayao','mochizuki-tomomi','morita-hiroyuki','otsuka-shinji','reitherman-woolie','shimizu-horoshi','stanchfield-walt','takahata-isao','tanaka-atsuko','thomas-frank','tomonaga-kazuhide','yoshinari-yoh'].includes(id))
+    ['ambro-hal','anno-hideaki','bluth-don','cleworth-eric','furukawa-hisaki','futaki-makiko','goldman-gary','joe-hisaishi','johnston-ollie','kahl-milt','king-hal','kon-satoshi','kondo-katsuya','larson-eric','lounsbery-john','macmanus-dan','mechanic-bill','miyazaki-goro','miyazaki-hayao','mochizuki-tomomi','morita-hiroyuki','otsuka-shinji','reitherman-woolie','shimizu-horoshi','stanchfield-walt','takahata-isao','tanaka-atsuko','thomas-frank','tomonaga-kazuhide','yoshinari-yoh'].includes(id))
     .reduce((obj,[id,person]) => ({...obj,[id]:{title:`${person.firstName} ${person.lastName}`,url:`https://storage.googleapis.com/aniarchive-assets/person/${id}.jpg`}}),{}),
   studios:Object.entries(studios).reduce((obj,[id,studio]) => ({...obj,[id]:{title:`${studio.name}`,url:`https://storage.googleapis.com/aniarchive-assets/studio/${id}.png`,/* PNG! */}}),{}),
 };
