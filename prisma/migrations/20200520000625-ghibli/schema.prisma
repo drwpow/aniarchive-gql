@@ -16,6 +16,8 @@ model Film {
   titleJP            String              @unique
   // /comment English title
   titleEN            String              @unique
+  // /comment Spanish title
+  titleES            String              @unique
   // /comment Initial release year of the film
   releaseYear        Int
   // /comment Main image for the film

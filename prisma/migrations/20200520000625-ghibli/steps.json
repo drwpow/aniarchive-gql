@@ -102,6 +102,24 @@
     {
       "tag": "CreateField",
       "model": "Film",
+      "field": "titleES",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Film",
+          "field": "titleES"
+        },
+        "directive": "unique"
+      }
+    },
+    {
+      "tag": "CreateField",
+      "model": "Film",
       "field": "releaseYear",
       "type": "Int",
       "arity": "Required"

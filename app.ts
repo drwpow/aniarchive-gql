@@ -39,7 +39,7 @@ new GraphQLServer({
         definition(t: any) {
           t.crud.film();
           t.crud.films({
-            filtering: { releaseYear: true },
+            filtering: { title: true, studio: true, releaseYear: true },
             ordering: { releaseYear: true, title: true, titleJP: true, titleEN: true },
             pagination: true,
           });
@@ -68,6 +68,7 @@ new GraphQLServer({
           t.model.id();
           t.model.title();
           t.model.titleEN();
+          t.model.titleES();
           t.model.titleJP();
           t.model.releaseYear();
           t.model.image();
