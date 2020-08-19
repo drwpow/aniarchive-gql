@@ -25,7 +25,7 @@
     "@nexus/schema": "^0.14.0-next.2",
     "@prisma/cli": "^2.0.0-beta.5",
     "@prisma/client": "^2.0.0-beta.5",
-    "@prisma/sdk": "^2.0.0-beta.5",
+    "@prisma/sdk": "^2.5.0",
     "dotenv": "^8.2.0",
     "graphql": "^14.6.0",
     "graphql-yoga": "^1.18.3",
