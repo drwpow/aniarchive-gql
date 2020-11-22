@@ -1,0 +1,15 @@
+{
+  "disney-animation":      { "country": "US", "foundedYear": 1923, "city": "Burbank, CA",       "name": "Walt Disney Animation Studios" },
+  "don-bluth-productions": { "country": "US", "foundedYear": 1979, "city": "Van Nuys, CA",      "name": "Don Bluth Productions" },
+  "dreamworks-animation":  { "country": "US", "foundedYear": 1994, "city": "Glendale, CA",      "name": "Dreamworks Animation" },
+  "fox-animation":         { "country": "US", "foundedYear": 1994, "city": "Phoenix, AZ",       "name": "Fox Animation Studios" },
+  "kyoto-animation":       { "country": "JP", "foundedYear": 1981, "city": "Uji, Kyoto",        "name": "Kyoto Animation" },
+  "madhouse":              { "country": "JP", "foundedYear": 1972, "city": "Uji, Kyoto",        "name": "Madhouse" },
+  "production-i-g":        { "country": "JP", "foundedYear": 1987, "city": "Kokubunji, Tokyo",  "name": "Production I.G" },
+  "shin-ei":               { "country": "JP", "foundedYear": 1976, "city": "Nishitōkyō, Tokyo", "name": "Shin-Ei Animation" },
+  "studio-ghibli":         { "country": "JP", "foundedYear": 1985, "city": "Koganei, Tokyo",    "name": "Studio Ghibli" },
+  "the-spa-studios":       { "country": "ES", "foundedYear": 2019, "city": "Madrid, ES",        "name": "The SPA Studios" },
+  "tms-entertainment":     { "country": "JP", "foundedYear": 1964, "city": "Nakano, Tokyo",     "name": "TMS Entertainment Co.,Ltd." },
+  "toei":                  { "country": "JP", "foundedYear": 1948, "city": "Nerima, Tokyo",     "name": "Toei Animation" },
+  "topcraft":              { "country": "JP", "foundedYear": 1971, "city": "Tokyo",             "name": "Topcraft" }
+}
