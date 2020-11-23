@@ -18,8 +18,8 @@
     "lint": "eslint --ext .ts 'src/**/*'",
     "migrate": "prisma migrate save --experimental",
     "migrate:up": "prisma migrate up --experimental",
-    "seed": "prisma/seed",
-    "start": "node app"
+    "seed": "node ./prisma/seed.js",
+    "start": "node ./app.js"
   },
   "dependencies": {
     "@nexus/schema": "^0.18.0",
@@ -29,7 +29,7 @@
     "dotenv": "^8.2.0",
     "graphql": "^15.4.0",
     "graphql-yoga": "^1.18.3",
-    "nexus-prisma": "^0.16.2",
+    "nexus-plugin-prisma": "^0.24.0",
     "typescript": "^4.1.2"
   },
   "devDependencies": {

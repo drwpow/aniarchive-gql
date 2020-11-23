@@ -2,7 +2,7 @@ import * as path from 'path';
 import { GraphQLServer } from 'graphql-yoga';
 import { PrismaClient } from '@prisma/client';
 import { makeSchema, queryType, objectType } from '@nexus/schema';
-import { nexusPrismaPlugin } from 'nexus-prisma';
+import { nexusPrisma } from 'nexus-plugin-prisma';
 
 const prisma = new PrismaClient();
 
@@ -33,7 +33,7 @@ new GraphQLServer({
     outputs: {
       typegen: path.join(__dirname, 'node_modules/@types/nexus-typegen/index.d.ts'),
     },
-    plugins: [nexusPrismaPlugin()],
+    plugins: [nexusPrisma({ experimentalCRUD: true })],
     types: [
       queryType({
         definition(t: any) {
