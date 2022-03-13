@@ -1,6 +1,6 @@
 # https://github.com/prisma/prisma-examples/tree/prisma2/deployment-platforms/docker
 
-FROM node:15.2
+FROM node:15.12.0
 ENV NODE_ENV=production
 
 WORKDIR /app
